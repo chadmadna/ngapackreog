@@ -14,7 +14,7 @@ all(x => x
   .postgain(slider(1, 0))
 )
 
-setcpm(145/4 + (5 * 0))
+setcpm(145/4 + (2 * 0))
 
 const countin = s("sf:23 sf:23 sf:23*4@2").sus(0).dec(.5)
 const hit = s("hit").bank("deadrums").gain(.8)
