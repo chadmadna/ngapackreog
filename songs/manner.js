@@ -119,7 +119,8 @@ src(s1)
   .pixelate(200, 200)
   .diff(src(s0)
         .saturate(0)
-        .contrast(3)
+        .thresh(.5)
+        .contrast(1.2)
         .scale(.8, () => a.fft[1] * 2 + 1, () => a.fft[0] * 2
           + 1))
   .modulate(src(o1).scale(() => 4 - a.fft[0]), .03)
@@ -128,7 +129,7 @@ src(s1)
   .out(o1)
 
 src(o1)
-  .blend(noise(1000, 5).modulate(o0).modulateKaleid(shape(4,0.1,1), .3), .1)
+  .blend(noise(1000, 5).modulate(o0).modulate(shape(4,0.1,1), .3), .1).brightness(0)
   .out(o0)
 
 s0.initVideo('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXNzbXBucmk4OG05MnBydzN3N2F0eHlpbzRrb3l3aDdrMHUyMTF5NyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l3V1060Es14YLYfaQV/giphy.mp4')
