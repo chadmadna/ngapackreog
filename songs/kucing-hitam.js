@@ -20,17 +20,17 @@ const countin = s("sf:23 sf:23 sf:23*4@2").sus(0).dec(.5)
 const hit = s("hit").bank("deadrums").gain(.8)
 
 const synth = {
-  intro: note("bb1").s("deadpad").rel(.4).detune(.3).gain(1),
-  verse1: note("<g2 gb2 [c2 b1]*4@2>").s("deadpad").rel(.4).detune(.3).gain(1),
-  break1: note("f1").s("deadpad").rel(.4).detune(.3).gain(1),
-  break2: note("f1@7 e3").s("deadpad").rel(.4).detune(.3).gain(1),
-  verse2: note("<f2 e2 [c2 b1]*4@2>").s("deadpad").rel(.4).detune(.3).gain(1),
-  verse3: note("[c2 b1]*2").s("deadpad").rel(.4).detune(.3).gain(1),
-  outro1: note("[c2 b1 bb1 a1 ab1 g1 gb1 f1] [e1@3 e2]*2").slow(4).s("deadpad").rel(.4).detune(.3).gain(1),
-  outro2: note("[e21 f1 fs1 g1 gs1 a1 as1 b1] [c2@3 c3]*2").slow(4).s("deadpad").rel(.4).detune(.3).gain(1),
-  outro3: note("[e1 f1 fs1 g1 gs1 a1 as1 b1] [c2 cs2 d2 ds2 e2 f2 fs2 g2]").slow(4).s("deadpad").rel(.4).detune(.3).gain(1),
-  outro4: note("[gs2 a2 as2 b2 c3 cs3 d3 ds3] [ds3,as4]").slow(4).s("deadpad").rel(.4).detune(.3).gain(1),
-  outro5: note("[ds3,as4]").seg(32).s("deadpad").rel(.4).detune(.3).gain(1),
+  intro: note("bb2").s("supersaw").rel(.4).detune(.3).gain(1),
+  verse1: note("<g3 gb3 [c3 b2]*4@2>").s("supersaw").rel(.4).detune(.3).gain(1),
+  break1: note("f2").s("supersaw").rel(.4).detune(.3).gain(1),
+  break2: note("f2@7 e3").s("supersaw").rel(.4).detune(.3).gain(1),
+  verse2: note("<f3 e3 [c3 b2]*4@2>").s("supersaw").rel(.4).detune(.3).gain(1),
+  verse3: note("[c3 b2]*2").s("supersaw").rel(.4).detune(.3).gain(1),
+  outro1: note("[c3 b2 bb2 a2 ab2 g2 gb2 f2] [e2@3 e3]*2").slow(4).s("supersaw").rel(.4).detune(.3).gain(1),
+  outro2: note("[e2 f2 fs2 g2 gs2 a2 as2 b2] [c3@3 c4]*2").slow(4).s("supersaw").rel(.4).detune(.3).gain(1),
+  outro3: note("[e2 f2 fs2 g2 gs2 a2 as2 b2] [c3 cs3 d3 ds3 e3 f3 fs3 g3]").slow(4).s("supersaw").rel(.4).detune(.3).gain(1),
+  outro4: note("[gs3 a3 as3 b3 c4 cs4 d4 ds4] [ds4,as4]").slow(4).s("supersaw").rel(.4).detune(.3).gain(1),
+  outro5: note("[ds4,as4]").seg(32).s("supersaw").rel(.4).detune(.3).gain(1),
 }
 
 const drums = {
