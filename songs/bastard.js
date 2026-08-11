@@ -122,8 +122,8 @@ $ARR: arrange(
 await initHydra({ detectAudio: true })
 
 a.show()
-a.setSmooth(0.1)
-a.setCutoff(1)
+a.setSmooth(0.5)
+a.setCutoff(.8)
 a.setScale(3)
 a.setBins(4)
 
@@ -140,7 +140,6 @@ solid(0)
   .pixelate(() => (a.fft[3] * 1000) + 400, () => (a.fft[3] * 1000) + 400)
   .contrast(1.5)
   .blend(src(s1)
-    .rotate(() => Math.sin(time))
     .modulate(src(s2), a.fft[0]), () => a.fft[0] + .3)
   .diff(src(s2)
     .modulate(src(s2)
