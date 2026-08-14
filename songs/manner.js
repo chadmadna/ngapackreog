@@ -11,7 +11,7 @@ samples('http://localhost:3000/strudel.json')
 */
 
 all(x => x
-  .postgain(slider(1, 0))
+  .postgain(slider(1, 0)) 
 )
 
 setcpm(151/4 + (5 * 0))
@@ -105,9 +105,9 @@ $ARR: arrange(
 await initHydra({ detectAudio: true })
 
 a.show()
-a.setSmooth(0.4)
-a.setCutoff(1)
-a.setScale(5)
+a.setSmooth(0.1)
+a.setCutoff(0.5)
+a.setScale(3)
 a.setBins(3)
 
 src(s1)
