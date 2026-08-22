@@ -11,7 +11,8 @@ samples('http://localhost:3000/strudel.json')
 */
 
 all(x => x
-  .postgain(slider(1, 0))
+  .compressor("-5:30:0:.05:.1")
+  .postgain(slider(1, 0, 1))
 )
 
 setcpm(145/4 + (2 * 0))
@@ -20,7 +21,7 @@ const countin = s("sf:23 sf:23 sf:23*4@2").sus(0).dec(.5)
 const hit = s("hit").bank("deadrums").gain(.8)
 
 const synth = {
-  intro: note("bb2").s("supersaw").rel(.4).detune(.3).gain(1),
+  intro: note("bb2,f2").s("supersaw").rel(.4).detune(.3).gain(1),
   verse1: note("<g3 gb3 [c3 b2]*4@2>").s("supersaw").rel(.4).detune(.3).gain(1),
   break1: note("f2").s("supersaw").rel(.4).detune(.3).gain(1),
   break2: note("f2@7 e3").s("supersaw").rel(.4).detune(.3).gain(1),

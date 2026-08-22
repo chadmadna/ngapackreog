@@ -11,8 +11,11 @@ samples('http://localhost:3000/strudel.json')
 */
 
 all(x => x
-  .postgain(slider(1, 0))
+  .compressor("-5:30:0:.05:.1")
+  .postgain(slider(1, 0, 1))
 )
+
+_$NOISE2: s("deadfx_noise:2").loopAt(8).chop(64).seg(8).vel(7)
 
 setcpm(145/4 + (2 * 0))
 
@@ -20,21 +23,21 @@ const countin = s("sf:23 sf:23 sf:23*4@2").sus(0).dec(.5)
 const hit = s("hit").bank("deadrums").gain(.8)
 
 const synth = {
-  riff: note("[e4,gs4,b4] [g4,bb4,d5] [[fs4,a4,cs5]@7 [gs4@2 cs4 a3 gs4@2 cs4 a3@2]@9]@2").slow(4).s("supersaw").rel(.4).detune(.3).gain(1),
-  riffFill: note("[e4,gs4,b4] [g4,bb4,d5] [[fs4,bb4,ds5]!16]@2").slow(4).s("supersaw").rel(.4).detune(.3).gain(1),
-  outro: note("[fs4,bb4,ds5]!16").s("supersaw").rel(.4).detune(.3).gain(1),
+  riff: note("[b3,ds4,as4] [bb3,d4,a4] [[a3,cs4,gs4]@7 [gs4@2 cs4 a3 gs4@2 cs4 a3@2]@9]@2").slow(4).s("supersaw").rel(.4).detune(.3).gain(1),
+  riffFill: note("[b3,ds4,as4] [bb3,d4,a4] [[e3,gs4,ds5]!16]@2").slow(4).s("supersaw").rel(.4).detune(.3).gain(1),
+  outro: note("[e3,gs4,ds5]!16").s("supersaw").rel(.4).detune(.3).gain(1),
 }
 
 const drums = {
   intro: stack(
     s("[boom*2 -]*2").dec(.25).vel(.8),
     s("[- sd]!2"),
-    s("[ht lt!3]*2").vel(1)
+    s("[ht lt!3]*2").vel(.7)
   ).bank("deadrums").gain(2),
   verse: stack(
     s("[boom*2 -]*2").dec(.25).vel(.8),
     s("[- sd]!2"),
-    s("[ht lt!3]*2").vel(1),
+    s("[ht lt!3]*2").vel(.7),
     s("[oh hh!3]!2").vel(.31),
   ).bank("deadrums").gain(2),
   verseFill: stack(
@@ -68,41 +71,56 @@ const drums = {
 
 $ARR: arrange(
   [4, stack(
+    s("here"),
     drums.intro,
     s("-!3").fastcat(countin).slow(4)
   )],
   [12, stack(
+    s("here"),
     hit.slow(8),
     drums.verse,
     synth.riff,
   )],
   [4, stack(
+    s("here"),
     hit.slow(8),
     drums.verseFill,
     synth.riffFill,
   )],
   [12, stack(
+    s("here"),
     hit.slow(8),
     drums.chorus,
     synth.riff,
   )],
   [4, stack(
+    s("here"),
     hit.slow(8),
     drums.chorusFill,
     synth.riffFill,
   )],
   [8, stack(
+    s("here"),
     hit.slow(8),
     drums.outro1,
     synth.outro,
   )],
   [24, stack(
+    s("here"),
     hit.slow(8),
     drums.outro2,
     synth.outro,
   )],
   [1024, s("-")]
 )
+
+_$: stack(
+  hit.slow(8),
+  s("bd bd*3 bd bd*2 bd*4 bd*2 bd bd*3"),
+  s("- sd [- sd] - sd - sd sd*2").sometimes(x => x.ply(2)),
+  s("lt [- ht] lt ht lt*2 ht ht*2 lt*2"),
+  s("cr rd oh hh cr rd hh oh").vel(.5),
+).bank("deadrums").gain(1)
 
 await initHydra({ detectAudio: true })
 

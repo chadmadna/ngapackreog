@@ -11,8 +11,10 @@ samples('http://localhost:3000/strudel.json')
 */
 
 all(x => x
-  .postgain(slider(1, 0)) 
+  .compressor("-5:30:0:.05:.1")
+  .postgain(slider(1, 0, 1))
 )
+
 
 setcpm(145/4)
 
@@ -20,12 +22,12 @@ const countin = s("<[sf:23!2] [sf:23 sf:23 sf:23*4@2]>").sus(0).dec(.5)
 const hit = s("hit").bank("deadrums").gain(.8)
 
 const synth = {
-  intro: note("f2 f3 c3@2 fs2 fs3 cs3@2 g2 g3 d3@2 [g2,g3,cs3]@4").slow(4).s("supersaw").rel(".4@3 3".slow(4)).hpf(500).gain(1.1),
-  verse: note("[g1,d2,g2]!4 [as1,f2,as2]!4 [a1,e2,a2]!8").slow(2).s("supersaw").rel(.4).hpf(500).gain(1.1),
-  break1: note("[g2,d3]!7 [fs2,cs3]").s("supersaw").rel(.4).hpf(500).gain(1.1),
-  break2: note("g1,d3,g2").slow(4).s("supersaw").rel(3).hpf(500).gain(1.1),
-  bridge1: note("[g1,d2,g2] [as1,f2,as2] [a1,e2,a2]@2").slow(4).s("supersaw").rel(.4).hpf(500).gain(1.1),
-  bridge2: note("g2 g3 d3@2 as2 as3 f3@2 a2 a3 e3@6").slow(4).s("supersaw").rel(1).hpf(500).gain(1.1),
+  intro: note("f2 f3 c3@2 fs2 fs3 cs3@2 g2 g3 d3@2 [g2,g3,cs3]@4").slow(4).s("supersaw").rel(".4@3 3".slow(4)).hpf(150).gain(1.1),
+  verse: note("[g1,d2,g2]!4 [as1,f2,as2]!4 [a1,e2,a2]!8").slow(2).s("supersaw").rel(.4).hpf(150).gain(1.1),
+  break1: note("[g2,d3]!7 [fs2,cs3]").s("supersaw").rel(.4).hpf(150).gain(1.1),
+  break2: note("g1,d3,g2").slow(4).s("supersaw").rel(3).hpf(150).gain(1.1),
+  bridge1: note("[g1,d2,g2] [as1,f2,as2] [a1,e2,a2]@2").slow(4).s("supersaw").rel(.4).hpf(150).gain(1.1),
+  bridge2: note("g2 g3 d3@2 as2 as3 f3@2 a2 a3 e3@6").slow(4).s("supersaw").rel(1).hpf(150).gain(1.1),
 }
 
 const drums = {
@@ -59,62 +61,79 @@ const drums = {
     s("oh!4").dec(.34).vel(.6).room(.8),
   ).bank("deadrums").gain(2),
   bridge2: stack(
-    s("[boom,bdh]").slow(2).dec(.34).vel(.6).striate(128),
+    s("[boom,bdh]").slow(2).dec(.34).vel(.6).striate(64).euclid(3, 8),
     s("bl bl*2 bl bl bl*2 bl*2 bl bl*2").vel(.3).delays(1/8).delay(.8),
   ).bank("deadrums").gain(2),
 } 
 
 $ARR: arrange(
-  [4, stack(
-    synth.intro,
-  )],
+  // [4, stack(
+  //   s("here"),
+  //   synth.intro,
+  // )],
   [2, stack(
+    s("here"),
     countin,
   )],
   [8, stack(
+    s("here"),
     hit.slow(4),
     drums.verse,
     synth.verse,
   )],
   [8, stack(
+    s("here"),
     hit.slow(4),
     drums.chorus,
     synth.verse,
   )],
   [8, stack(
+    s("here"),
     hit.slow(4),
     drums.verse,
     synth.verse,
   )],
   [8, stack(
+    s("here"),
     hit.slow(4),
     drums.break1,
     synth.break1,
   )],
   [8, stack(
+    s("here"),
     hit.slow(4),
     drums.chorus,
     synth.verse,
   )],
   [4, stack(
+    s("here"),
     hit.slow(4),
     drums.break2,
     synth.break2,
   )],
   [16, stack(
+    s("here"),
     hit.slow(4),
     drums.bridge1,
     synth.bridge1
   )],
   [16, stack(
+    s("here"),
     hit.slow(4),
     drums.bridge2,
     synth.bridge2,
   )],
   [8, stack(
+    s("here"),
     hit.slow(4),
     drums.chorus,
     synth.verse,
+  )],
+  [16, stack(
+    s("here"),
+    // hit.slow(4),
+    drums.chorus,
+    // synth.verse,
   )],
   [1024, s("-")]
 )

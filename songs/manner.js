@@ -11,7 +11,8 @@ samples('http://localhost:3000/strudel.json')
 */
 
 all(x => x
-  .postgain(slider(1, 0)) 
+  .compressor("-5:30:0:.05:.1")
+  .postgain(slider(1, 0, 1))
 )
 
 setcpm(151/4 + (5 * 0))
@@ -20,8 +21,8 @@ const countin = s("sf:23 sf:23 sf:23*4@2").sus(0).dec(.5)
 const hit = s("hit").bank("deadrums").gain(.8)
 
 const synth = {
-  intro: note("g2 g2 a2 e2 a2 a2 as2 e2").s("supersaw").rel(.4).hpf(500),
-  verse: note("[g1,d3,bb2]!4 [a1,e3,c3]!4").s("supersaw").rel(.4).hpf(500),
+  intro: note("g2 g2 a2 e2 a2 a2 as2 e2").s("supersaw").rel(.4).hpf(150),
+  verse: note("[g1,d3,bb2]!4 [a1,e3,c3]!4").s("supersaw").rel(.4).hpf(150),
 }
 
 const drums = {
@@ -53,49 +54,59 @@ const drums = {
 
 $ARR: arrange(
   [4, stack(
+    s("here"),
     synth.intro,
     s("-!3").fastcat(countin).slow(4),
   )],
   [8, stack(
+    s("here"),
     hit.slow(4),
     synth.verse,
     drums.verse
   )],
   [8, stack(
+    s("here"),
     hit.slow(4),
     synth.verse,
     drums.chorus
   )],
   [3, stack(
+    s("here"),
     hit.slow(4),
     synth.verse,
     drums.verse
   )],
   [1, stack(
+    s("here"),
     synth.verse,
     drums.verseFill // ciaat
   )],
   [4, stack(
+    s("here"),
     hit.slow(4),
     synth.verse,
     drums.verse
   )],
   [8, stack(
+    s("here"),
     hit.slow(4),
     synth.verse,
     drums.chorus
   )],
   [8, stack(
+    s("here"),
     hit.slow(4),
     synth.verse,
     drums.break
   )],
   [8, stack(
+    s("here"),
     hit.slow(4),
     synth.verse,
     drums.chorus
   )],
   [1, stack(
+    s("here"),
     hit.slow(4).delay(.98).delays(1/8),
     drums.outro,
   )],
